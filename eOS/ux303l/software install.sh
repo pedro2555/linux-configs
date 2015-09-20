@@ -44,6 +44,8 @@ sudo apt-get install elementary-tweaks
 sudo apt-get install uget
 # virtualization suite
 sudo apt-get install virtualbox
+# gnome sound converter
+sudo apt-get install soundconverter
 
 #
 # Configurations
