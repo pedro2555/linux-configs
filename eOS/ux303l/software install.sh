@@ -48,6 +48,9 @@ sudo apt-get install virtualbox
 #
 # Configurations
 #
+# power saving settings
 sudo tlp start
+# change default text based editor (3 for vim)
+sudo update-alternatives --config editor
 
 
