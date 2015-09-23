@@ -31,7 +31,4 @@ sudo apt-get install indicator-cpufreq
 #
 # enable Bluetooth
 rfkill unblock bluetooth
-# Ads blocking
-sudo wget http://winhelp2002.mvps.org/hosts.txt --output-document=/etc/hosts
-
 
