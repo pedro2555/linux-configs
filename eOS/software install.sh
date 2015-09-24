@@ -34,6 +34,8 @@ sudo apt-get install filezilla
 sudo apt-get install apache2
 sudo apt-get install php5
 sudo apt-get install mysql-server
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
 
 # Media
 sudo apt-get install vlc
