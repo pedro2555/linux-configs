@@ -25,6 +25,9 @@ sudo apt-get install indicator-brightness
 # xrandr --output eDP1 --brightness (.0-1)
 # CPU freq, for performance-powersave options
 sudo apt-get install indicator-cpufreq
+# for multitouch gestures (touchegg command must be added to startup)
+sudo apt-get install touchegg
+cp touchegg.conf ~/.config/touchegg/touchegg.conf
 
 #
 # Configurations
