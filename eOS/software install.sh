@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #
 # PPAs
 #
@@ -12,7 +14,8 @@ sudo apt-add-repository ppa:behda/ppa
 # Oracle's Virtual Box
 sudo touch /etc/apt/sources.list.d/vbox.list
 sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian quantal contrib" >> /etc/apt/sources.list.d/vbox.list'
-
+# Sublime 2
+sudo add-apt-repository ppa:webupd8team/sublime-text-2
 
 sudo apt-get update
 
@@ -27,6 +30,7 @@ sudo wget http://winhelp2002.mvps.org/hosts.txt --output-document=/etc/hosts
 sudo apt-get install vim
 sudo apt-get install git
 sudo apt-get install giggle
+sudo apt-get install sublime-text
 
 # Web
 sudo apt-get install chromium-browser
@@ -39,6 +43,11 @@ sudo mv composer.phar /usr/local/bin/composer
 
 # Media
 sudo apt-get install vlc
+
+# Networking
+sudo apt-get install nmap
+sudo apt-get install dsniff
+sudo apt-get install traceroute
 
 # Utilities
 # Disks utility
@@ -64,7 +73,8 @@ sudo apt-get install soundconverter
 # GNU Cash
 sudo apt-get install gnucash
 # caffeine, to manually prevent sleeping/locking on idle
-sudo apt-get install caffeine
+# indicator not working
+#sudo apt-get install caffeine
 
 
 #
