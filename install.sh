@@ -22,13 +22,10 @@ cd ..
 echo -e "\e[33mLoading packages ...\e[39m"
 declare -A ppas
 declare -A packages
-declare -A configs
 ppas_id=0
 packages_id=0
-configs_id=0
 
 for f in $distribution*.cfg ; do
-	echo $f
 	source $f
 
 	if [ "$ppa" ] ; then
@@ -39,12 +36,21 @@ for f in $distribution*.cfg ; do
 		packages[$packages_id]=$install
 		let packages_id=$packages_id+1
 	fi
-	if [ "$config" ] ; then
-		configs[$configs_id]=$config
-		let configs_id=$configs_id+1
+	unset ppa
+	unset config
+done
+for f in $distribution$machine*.cfg ; do
+	source $f
+
+	if [ "$ppa" ] ; then
+		ppas[$ppas_id]=$ppa
+		let ppas_id=$ppas_id+1
+	fi
+	if [ "$install" ] ; then
+		packages[$packages_id]=$install
+		let packages_id=$packages_id+1
 	fi
 	unset ppa
-	unset install
 	unset config
 done
 echo ${#ppas[@]}
@@ -62,7 +68,8 @@ if [ ${#ppas[@]} -ne 0 ]; then
 		add-apt-repository $ppa
 	done
 	echo -e "\e[33mUpdating package libraries...\e[39m"
-	#apt-get update > /dev/null
+	apt-get update > /dev/null
+	apt-get upgrade > /dev/null
 	echo -e "\e[32mFinished updating package libraries.\e[39m"
 	echo ''
 	echo ''
@@ -77,21 +84,8 @@ if [ ${#packages[@]} -ne 0 ]; then
 		echo -e "\e[96m$i\e[39m"
 	done
 
+	#apt-get upgrade > /dev/null
 	echo -e "\e[32mFinished installing package(s).\e[39m"
-	echo ''
-	echo ''
-fi
-
-# run all required configurations
-if [ ${#configs[@]} -ne 0 ]; then
-	echo ${#configs[@]}
-	echo -e "\e[33mRunning package(s) configuration(s)...\e[39m"
-
-	for ((i = 0; i < ${#configs[@]}; i++)); do
-	    ${configs[$i]}
-	done
-
-	echo -e "\e[32mFinished running package(s) configuration(s).\e[39m"
 	echo ''
 	echo ''
 fi
