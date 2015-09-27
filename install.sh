@@ -8,20 +8,19 @@
 if [ "$*" == "" ]; then
     echo "No arguments provided."
     exit 1
-else
-	distribution="$(dirname "$1")"
-	distribution=${distribution%/}
-	machine=${1%/}
+fi
+distribution="$(dirname "$1")"
+distribution=${distribution%/}
+machine=${1%/}
 
-	# check if folder and parent contain either a installs or ppas file, or both
-	if [[ ! -f $distribution"/ppas" && ! -f $distribution"/installs" ]]; then
-		echo "Invalid argument: parent folder must contain either a file named ppas, a file named installs, or both."
-		exit 1
-	fi
-	if [[ ! -f $machine"/ppas" && ! -f $machine"/installs" ]]; then
-		echo "Invalid argument: folder must contain either a file named ppas, a file named installs, or both."
-		exit 1
-	fi
+# check if folder and parent contain either a installs or ppas file, or both
+if [[ ! -f $distribution"/ppas" && ! -f $distribution"/installs" ]]; then
+	echo "Invalid argument: parent folder must contain either a file named ppas, a file named installs, or both."
+	exit 1
+fi
+if [[ ! -f $machine"/ppas" && ! -f $machine"/installs" ]]; then
+	echo "Invalid argument: folder must contain either a file named ppas, a file named installs, or both."
+	exit 1
 fi
 
 #
