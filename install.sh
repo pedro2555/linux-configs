@@ -1,15 +1,9 @@
 #!/bin/bash
 
-
 #
 # Run initialization checks and requests
 #
-# check if running as sudo
-ROOT_UID="0"
-if [ "$UID" -ne "$ROOT_UID" ] ; then
-	echo "Please run as sudo (NOT root)!"
-	exit 1
-fi
+
 # check arguments
 if [ "$*" == "" ]; then
     echo "No arguments provided."
@@ -59,7 +53,7 @@ fi
 # run pre-update scripts
 echo -e "\e[33mRunning pre-update scripts...\e[39m"
 if [ $machine"/pre-update.sh" ]; then
-$machine"/pre-update.sh"
+	$machine"/pre-update.sh"
 fi
 if [ $distribution"/pre-update.sh" ]; then
 	source $distribution"/pre-update.sh"
