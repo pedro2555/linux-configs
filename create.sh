@@ -9,6 +9,7 @@ else
 
 	if [ -d $FOLDER ]; then
 		echo "Invalid argument: folder must not already exist."
+		exit 1
 	fi
 
 	mkdir $FOLDER
