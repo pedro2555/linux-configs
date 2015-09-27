@@ -10,15 +10,13 @@ if [ "$UID" -ne "$ROOT_UID" ] ; then
 	echo "Please run as sudo (NOT root)!"
 	exit 1
 fi
-# get distribution
-echo -e "\e[33mSelect a distribution:\e[39m"
-select distribution in */; do test -n "$distribution" && break; echo ">>> Invalid Selection"; done
-cd "$distribution"
-# get machine
-echo -e "\e[33mSelect a machine:\e[39m"
-select machine in */; do test -n "$machine" && break; echo ">>> Invalid Selection"; done
-cd ..
-
+# check arguments
+if [ "$*" == "" ]; then
+    echo "No arguments provided"
+    exit 1
+fi
+distribution="$(dirname "$1")"
+machine=$1
 
 #
 # Deal with ppa additions, and pre-update scripts
@@ -32,7 +30,8 @@ if [ -f $distribution$machine"ppas" ]; then
 	    ppas[i]="${line_data}"
 	    ((++i))
 	done < $distribution$machine"ppas"
-fi [ -f $distribution"ppas" ]; then
+fi
+if [ -f $distribution"ppas" ]; then
 	while IFS=$'\n' read -r line_data; do
 	    ppas[i]="${line_data}"
 	    ((++i))
@@ -74,13 +73,13 @@ fi
 echo -e "\e[33mLoading and installing packages...\e[39m"
 declare -a installs
 let i=0
-fi [ -f $distribution$machine"installs" ]; then
+if [ -f $distribution$machine"installs" ]; then
 	while IFS=$'\n' read -r line_data; do
 	    installs[i]="${line_data}"
 	    ((++i))
 	done < $distribution$machine"installs"
 fi
-fi [ -f $distribution"installs" ]; then
+if [ -f $distribution"installs" ]; then
 	while IFS=$'\n' read -r line_data; do
 	    installs[i]="${line_data}"
 	    ((++i))
