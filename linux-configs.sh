@@ -9,18 +9,16 @@ fi
 
 func=""
 # validate arguments
-while getopts ci: option
+while getopts ci option
 do
     case "$option" in
-        c) func="c" ;;
-        i) func="i" ;;
-        o);;
+        c)
+			shift $(($OPTIND-1))
+			source ./create.sh $1 
+		;;
+        i)
+			shift $(($OPTIND-1))
+			source s./install.sh $1
+		;;
     esac
 done
-shift $(($OPTIND-1))
-FOLDER="$1"
-
-case "$func" in
-	c) source ./create.sh $FOLDER ;;
-	i) source ./install.sh $FOLDER ;;
-esac
