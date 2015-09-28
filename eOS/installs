@@ -6,6 +6,9 @@ chromium-browser
 filezilla
 apache2
 php5
+php5-gd
+php5-curl
+php5-tidy
 mysql-server
 vlc
 nmap
